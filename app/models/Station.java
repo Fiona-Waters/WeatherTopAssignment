@@ -1,2 +1,27 @@
-package models;public class Station {
+package models;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+import play.db.jpa.Model;
+
+@Entity
+public class Station extends Model {
+
+    public String name;
+    public float lat;
+    public float lng;
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<Reading> readings = new ArrayList<Reading>();
+
+    public Station(String name, float lat, float lng)
+    {
+        this.name = name;
+        this.lat = lat;
+        this.lng = lng;
+    }
 }

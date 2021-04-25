@@ -3,8 +3,14 @@
 
 #{menu id: "dashboard"/}
 
+#{list items:stations, as:'station'}
 <section class="ui segment">
     <h2 class ="ui header">
-        Weather Top
+        ${stations.name}
     </h2>
+    ${stations.lat}
+    ${stations.lng}
+    Station: ${stations.name}
+    #{list-stations stations:stations/}
 </section>
+#{/list}

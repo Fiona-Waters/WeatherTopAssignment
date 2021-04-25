@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+#{extends 'main.html' /}
+#{set title:'Station' /}
+
+#{menu id:"dashboard" /}
+
+<section class = "ui segment">
+    <h2 class="ui header">
+        ${station.name}
+    </h2>
+    #{}
+</section>
