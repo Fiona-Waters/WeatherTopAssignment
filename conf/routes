@@ -5,7 +5,7 @@
 # Home page
 GET     /                                       Application.index
 GET     /dashboard                              Dashboard.index
-GET     /main                                   Main.index
+GET     /home                                   Home.index
 GET     /about                                  About.index
 
 # Ignore favicon requests

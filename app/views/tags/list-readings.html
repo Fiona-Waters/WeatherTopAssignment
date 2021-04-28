@@ -1,14 +1,15 @@
+
 <table class="ui fixed table">
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Latitude</th>
-        <th>Longitude</th>
-        <th></th>
+        <th>Code</th>
+        <th>Temp</th>
+        <th>Wind Speed</th>
+        <th>Pressure</th>
     </tr>
     </thead>
     <tbody>
-    #{list items:_stations.readings, as:'reading'}
+    #{list items:_readings, as:'reading'}
     <tr>
         <td>
             ${reading.code}
@@ -20,7 +21,7 @@
             ${reading.windSpeed}
         </td>
         <td>
-
+            ${reading.pressure}
         </td>
     </tr>
     #{/list}

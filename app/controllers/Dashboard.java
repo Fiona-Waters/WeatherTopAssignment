@@ -12,6 +12,7 @@ public class Dashboard extends Controller {
     public static void index(){
         Logger.info("Rendering Dashboard");
         List<Station> stations = Station.findAll();
+
        // List<Reading> readings = Reading.findAll();
         render("dashboard.html", stations);
     }

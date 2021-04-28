@@ -2,15 +2,13 @@
 #{set title:'Dashboard' /}
 
 #{menu id: "dashboard"/}
-
 #{list items:stations, as:'station'}
 <section class="ui segment">
     <h2 class ="ui header">
-        ${stations.name}
+        ${station.name}
     </h2>
-    ${stations.lat}
-    ${stations.lng}
-    Station: ${stations.name}
-    #{list-stations stations:stations/}
+
+#{weathercards station:station/}
+    #{list-readings readings:station.readings/}
 </section>
 #{/list}

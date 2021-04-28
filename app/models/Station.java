@@ -12,9 +12,9 @@ import play.db.jpa.Model;
 @Entity
 public class Station extends Model {
 
-    public String name;
-    public float lat;
-    public float lng;
+    private String name;
+    private float lat;
+    private float lng;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
 
@@ -23,5 +23,35 @@ public class Station extends Model {
         this.name = name;
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getLat() {
+        return lat;
+    }
+
+    public void setLat(float lat) {
+        this.lat = lat;
+    }
+
+    public float getLng() {
+        return lng;
+    }
+
+    public void setLng(float lng) {
+        this.lng = lng;
+    }
+
+    public Reading getLatestReading()
+    {
+        return readings.get(readings.size()-1);
+
     }
 }
