@@ -11,7 +11,7 @@ import play.db.jpa.Model;
 
 @Entity
 public class Station extends Model {
-
+    public String weatherCondition;
     private String name;
     private float lat;
     private float lng;
