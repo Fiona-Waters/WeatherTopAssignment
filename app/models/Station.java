@@ -13,10 +13,12 @@ import play.db.jpa.Model;
 public class Station extends Model {
 
     public String weatherCondition;
+    public float fahrenheit;
+    public int toBeaufort;
     public String name;
     public float lat;
     public float lng;
-    public float fahrenheit;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
