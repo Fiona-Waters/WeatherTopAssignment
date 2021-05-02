@@ -5,7 +5,6 @@ import play.db.jpa.Model;
 
 @Entity
 public class Reading extends Model {
-    //public String weatherCondition;
     public int code;
     public float temperature;
     public float windSpeed;
@@ -19,13 +18,6 @@ public class Reading extends Model {
         this.pressure = pressure;
 
     }
-
-   /* public String getWeatherCondition()
-    {
-      return weatherCondition;
-    }
-
-    */
 
 
 

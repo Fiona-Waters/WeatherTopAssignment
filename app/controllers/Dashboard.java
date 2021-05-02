@@ -14,18 +14,22 @@ public class Dashboard extends Controller {
         fillWeatherCodes();
         Logger.info("Rendering Dashboard");
         List<Station> stations = Station.findAll();
-for(Station station:stations)
-{
-    if(station.readings.size() >0)
-    {
-        Reading lastReading = station.readings.get(station.readings.size()-1);
-        station.weatherCondition = weatherCodes.get(lastReading.code);
-    }
-}
+
+        for(Station station:stations)
+        {
+            if(station.readings.size() >0)
+            {
+                Reading lastReading = station.readings.get(station.readings.size()-1);
+                station.weatherCondition = weatherCodes.get(lastReading.code);
+                station.fahrenheit = convertCToF(lastReading.temperature);
+            }
+        }
+
         render("dashboard.html", stations);
     }
 
     static HashMap<Integer, String> weatherCodes = new HashMap<>();
+
 
 
     static void fillWeatherCodes()
@@ -39,4 +43,11 @@ for(Station station:stations)
         weatherCodes.put(700, "Snow");
         weatherCodes.put(800, "Thunder");
     }
+
+    public static float convertCToF(float celsius)
+    {
+        return celsius * 9/5 + 32;
+    }
+
+
 }
