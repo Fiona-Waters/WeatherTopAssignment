@@ -15,6 +15,8 @@ public class Station extends Model {
     public String weatherCondition;
     public float fahrenheit;
     public int toBeaufort;
+    public String windCompass;
+    public float windChill;
     public String name;
     public float lat;
     public float lng;
@@ -30,6 +32,7 @@ public class Station extends Model {
         this.lng = lng;
     }
 
+    //do I need this method?
     public Reading getLatestReading()
     {
 

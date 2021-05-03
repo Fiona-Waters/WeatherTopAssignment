@@ -36,7 +36,12 @@
       </div>
       <div class="extra">
           <h3>Wind</h3>
-          <p>${_station.toBeaufort} bft</p>
+          <p>${_station.toBeaufort} bft
+              <br> ${_station.windCompass}
+          <br>feels like
+          <br>&{_station.windChill}
+          </p>
+
           <div class="ui yellow rating" data-rating="4"></div>
       </div>
   </div>
