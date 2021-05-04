@@ -39,7 +39,7 @@
           <p>${_station.toBeaufort} bft
               <br> ${_station.windCompass}
           <br>feels like
-          <br>&{_station.windChill}
+          <br>&{_station.windChill.format('0.##')}
           </p>
 
           <div class="ui yellow rating" data-rating="4"></div>

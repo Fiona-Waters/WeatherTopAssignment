@@ -25,11 +25,11 @@ public class Station extends Model {
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
 
-    public Station(String name, float lat, float lng)
+    public Station(String name)
     {
         this.name = name;
-        this.lat = lat;
-        this.lng = lng;
+        //this.lat = lat;
+        //this.lng = lng;
     }
 
     //do I need this method?

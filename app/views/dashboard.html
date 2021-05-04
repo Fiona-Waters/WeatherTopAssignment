@@ -7,8 +7,10 @@
     <h2 class ="ui header">
         ${station.name}
     </h2>
-
-#{weathercards station:station/}
-    #{list-readings readings:station.readings/}
+    <a href="/stations/${station.id}" class="ui icon button">
+        <i class="icon folder open"></i>
+    </a>
 </section>
 #{/list}
+#{addstation /}
+

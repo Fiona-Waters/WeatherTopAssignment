@@ -5,7 +5,10 @@
 
 <section class = "ui segment">
     <h2 class="ui header">
-        ${station.name}
+       ${station.name}
     </h2>
-    #{}
+    #{weathercards station:station/}
+    #{list-readings readings:station.readings/}
+    #{addreading station:station /}
+
 </section>
