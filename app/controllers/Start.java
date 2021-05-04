@@ -3,11 +3,11 @@ package controllers;
 import play.Logger;
 import play.mvc.Controller;
 
-public class Home extends Controller {
+public class Start extends Controller {
 
     public static void index()
     {
         Logger.info("Rendering Main");
-        render ("home.html");
+        render ("signup.html");
     }
 }

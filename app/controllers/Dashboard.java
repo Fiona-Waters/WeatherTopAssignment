@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Member;
 import models.Station;
 import models.Reading;
 import play.Logger;
@@ -13,14 +14,18 @@ public class Dashboard extends Controller {
     public static void index() {
 
         Logger.info("Rendering Dashboard");
-        List<Station> stations = Station.findAll();
-        render("dashboard.html", stations);
+        Member member = Accounts.getLoggedInMember();
+        List<Station> stations = member.stations;
+        render("dashboard.html", member, stations);
 
     }
 
     public static void addStation(String title)
     {
+        Member member = Accounts.getLoggedInMember();
         Station station = new Station (title);
+        member.stations.add(station);
+        member.save();
         Logger.info("Adding a new station called " + title);
         station.save();
         redirect("/dashboard");
