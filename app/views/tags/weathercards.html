@@ -5,7 +5,7 @@
             <img>
         </div>
         <div class="extra">
-         <h3>  ${_station.name} </h3>
+         <h3>  ${_station.name} <i class="right floated purple big map marker icon"></i></h3>
             <div class="ui yellow rating" data-rating="1"></div>
         </div>
     </div>
@@ -14,7 +14,7 @@
             <img>
         </div>
         <div class="extra">
-            <h3>Weather</h3>
+            <h3>Weather<i class="right floated red big ${_station.weatherConditionIcon}"></i></h3>
             <p>${_station.weatherCondition}</p>
           <div class="ui yellow rating" data-rating="2"></div>
       </div>
@@ -24,7 +24,7 @@
           <img>
       </div>
       <div class="extra">
-          <h3>Temp</h3>
+          <h3>Temp<i class="right floated blue big thermometer quarter icon"></i></h3>
           <p>${_station.latestReading?.temperature}C</p>
           <p>${_station.fahrenheit}F</p>
           <div class="ui yellow rating" data-rating="3"></div>
@@ -35,7 +35,7 @@
           <img>
       </div>
       <div class="extra">
-          <h3>Wind</h3>
+          <h3>Wind  <i class="right floated green big wind icon"></i> </h3>
           <p>${_station.toBeaufort} bft
               <br> ${_station.windCompass}
           <br>feels like

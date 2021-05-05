@@ -13,6 +13,7 @@ import play.db.jpa.Model;
 public class Station extends Model {
 
     public String weatherCondition;
+    public String weatherConditionIcon;
     public float fahrenheit;
     public int toBeaufort;
     public String windCompass;
@@ -25,15 +26,15 @@ public class Station extends Model {
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
 
-    public Station(String name)
+    public Station(String name, float lat, float lng)
     {
         this.name = name;
-        //this.lat = lat;
-        //this.lng = lng;
+        this.lat = lat;
+        this.lng = lng;
     }
 
     //do I need this method?
-    public Reading getLatestReading()
+  public Reading getLatestReading()
     {
 
         if (readings.size() >=1)
@@ -47,4 +48,6 @@ public class Station extends Model {
 
 
     }
+
+
 }

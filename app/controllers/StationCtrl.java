@@ -11,15 +11,18 @@ public class StationCtrl extends Controller {
     public static void index(Long id)
     {
         fillWeatherCodes();
+        fillIconWeatherCodes();
         Station station = Station.findById(id);
 
         if (station.readings.size() > 0) {
             Reading lastReading = station.readings.get(station.readings.size() - 1);
             station.weatherCondition = weatherCodes.get(lastReading.code);
+            station.weatherConditionIcon = iconWeatherCodes.get(lastReading.code);
             station.fahrenheit = convertCToF(lastReading.temperature);
             station.toBeaufort = convertToBeaufort(lastReading.windSpeed);
             station.windChill = calcWindChill(lastReading.temperature, lastReading.windSpeed);
             station.windCompass = calcWindDirection(lastReading.windDirection);
+
         }
 
 
@@ -39,6 +42,19 @@ public class StationCtrl extends Controller {
         weatherCodes.put(800, "Thunder");
     }
 
+    static HashMap<Integer, String> iconWeatherCodes = new HashMap<>();
+
+    static void fillIconWeatherCodes()
+    {
+        iconWeatherCodes.put(100,"sun icon");
+        iconWeatherCodes.put(200,"cloud sun icon");
+        iconWeatherCodes.put(300, "cloud icon");
+        iconWeatherCodes.put(400, "cloud rain icon");
+        iconWeatherCodes.put(500, "cloud showers heavy icon");
+        iconWeatherCodes.put(600, "cloud rain icon");
+        iconWeatherCodes.put(700, "snowman icon");
+        iconWeatherCodes.put(800, "bolt icon");
+    }
     public static float convertCToF(float celsius)
     {
         return celsius * 9/5 + 32;
@@ -154,7 +170,6 @@ public class StationCtrl extends Controller {
         float c = (float) 11.37;
         float d = (float) 0.3965;
         return (float)(a + b*temperature - c*calc+ d*temperature*calc);
-        //how do I get it to 2 decimal places
     }
 
     public static void addReading(Long id, int code, float temperature, float windSpeed, float windDirection, float pressure)

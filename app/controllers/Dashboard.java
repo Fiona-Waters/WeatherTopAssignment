@@ -20,10 +20,10 @@ public class Dashboard extends Controller {
 
     }
 
-    public static void addStation(String title)
+    public static void addStation(String title, float lat, float lng)
     {
         Member member = Accounts.getLoggedInMember();
-        Station station = new Station (title);
+        Station station = new Station (title, lat, lng);
         member.stations.add(station);
         member.save();
         Logger.info("Adding a new station called " + title);
