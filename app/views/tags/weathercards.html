@@ -24,7 +24,11 @@
           <img>
       </div>
       <div class="extra">
-          <h3>Temp<i class="right floated blue big thermometer quarter icon"></i></h3>
+          <h3>Temp
+              #{ if _station.latestReading.temperature <15}
+          <i class="right floated blue big thermometer quarter icon"></i> #{/if}
+          #{ if _station.latestReading.temperature >=15 }
+          <i class="right floated red big thermometer quarter icon"></i> #{/if}</h3>
           <p>${_station.latestReading?.temperature}C</p>
           <p>${_station.fahrenheit}F</p>
           <div class="ui yellow rating" data-rating="3"></div>
@@ -50,7 +54,7 @@
           <img>
       </div>
       <div class="extra">
-          <h3>Pressure</h3>
+          <h3>Pressure<i class="right floated orange big compress arrows alternate icon"></i></h3>
           <p>${_station.latestReading?.pressure} hpa</p>
           <div class="ui yellow rating" data-rating="5"></div>
       </div>
