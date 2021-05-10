@@ -5,6 +5,7 @@ import models.Station;
 import models.Reading;
 import play.Logger;
 import play.mvc.Controller;
+import utils.ReadingAnalytics;
 
 public class StationCtrl extends Controller {
 
@@ -22,12 +23,12 @@ public class StationCtrl extends Controller {
             station.toBeaufort = convertToBeaufort(lastReading.windSpeed);
             station.windChill = calcWindChill(lastReading.temperature, lastReading.windSpeed);
             station.windCompass = calcWindDirection(lastReading.windDirection);
-            station.minTemperature = calcMinimumTemperature(station.readings);
-            station.maxTemperature = calcMaximumTemperature(station.readings);
-            station.minWindSpeed = calcMinimumWindSpeed(station.readings);
-            station.maxWindSpeed = calcMaximumWindSpeed(station.readings);
-            station.minPressure = calcMinimumPressure(station.readings);
-            station.maxPressure = calcMaximumPressure(station.readings);
+            station.minTemperature = ReadingAnalytics.calcMinimumTemperature(station.readings);
+            station.maxTemperature = ReadingAnalytics.calcMaximumTemperature(station.readings);
+            station.minWindSpeed = ReadingAnalytics.calcMinimumWindSpeed(station.readings);
+            station.maxWindSpeed = ReadingAnalytics.calcMaximumWindSpeed(station.readings);
+            station.minPressure = ReadingAnalytics.calcMinimumPressure(station.readings);
+            station.maxPressure = ReadingAnalytics.calcMaximumPressure(station.readings);
         }
 
 
@@ -186,105 +187,5 @@ public class StationCtrl extends Controller {
 
     }
 
-    private static float calcMinimumTemperature(List<Reading> readings)
-    {
-        float minValue = 0;
-        if (readings.size() > 0)
-        {
-            minValue = readings.get(0).temperature;
-            for (int i=0; i<readings.size(); i++)
-            {
-                if(readings.get(i).temperature < minValue)
-                {
-                    minValue = readings.get(i).temperature;
-                }
-            }
-        }
-        return minValue;
-    }
 
-    private static float calcMaximumTemperature(List<Reading> readings)
-    {
-        float maxValue = 0;
-        if(readings.size() >0)
-        {
-            maxValue = readings.get(0).temperature;
-            for(int i=0; i<readings.size(); i++)
-            {
-                if(readings.get(i).temperature > maxValue)
-                {
-                    maxValue = readings.get(i).temperature;
-                }
-            }
-        }
-        return maxValue;
-    }
-
-    private static float calcMaximumWindSpeed(List<Reading> readings)
-    {
-        float maxValue = 0;
-        if(readings.size() >0)
-        {
-            maxValue = readings.get(0).windSpeed;
-            for(int i=0; i<readings.size(); i++)
-            {
-                if(readings.get(i).windSpeed > maxValue)
-                {
-                    maxValue = readings.get(i).windSpeed;
-                }
-            }
-        }
-        return maxValue;
-    }
-
-    private static float calcMinimumWindSpeed(List<Reading> readings)
-    {
-        float minValue = 0;
-        if(readings.size() >0)
-        {
-            minValue = readings.get(0).windSpeed;
-            for(int i=0; i<readings.size(); i++)
-            {
-                if(readings.get(i).windSpeed < minValue)
-                {
-                    minValue = readings.get(i).windSpeed;
-                }
-            }
-        }
-        return minValue;
-    }
-
-    private static float calcMaximumPressure(List <Reading> readings)
-    {
-        float maxValue = 0;
-        if(readings.size() >0)
-        {
-            maxValue = readings.get(0).pressure;
-            for(int i=0; i<readings.size(); i++)
-            {
-                if(readings.get(i).pressure > maxValue)
-                {
-                    maxValue = readings.get(i).pressure;
-                }
-            }
-        }
-        return maxValue;
-    }
-
-    private static float calcMinimumPressure(List <Reading> readings)
-    {
-        float minValue = 0;
-        if(readings.size() >0)
-        {
-            minValue = readings.get(0).pressure;
-            for(int i=0; i<readings.size(); i++)
-            {
-                if(readings.get(i).pressure < minValue)
-                {
-                    minValue = readings.get(i).pressure;
-                }
-            }
-        }
-        return minValue;
-    }
 }
