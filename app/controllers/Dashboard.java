@@ -22,6 +22,8 @@ public class Dashboard extends Controller {
 
     public static void addStation(String title, float lat, float lng)
     {
+        //add validation here
+
         Member member = Accounts.getLoggedInMember();
         Station station = new Station (title, lat, lng);
         member.stations.add(station);
@@ -29,6 +31,20 @@ public class Dashboard extends Controller {
         Logger.info("Adding a new station called " + title);
         station.save();
         redirect("/dashboard");
+
+    }
+
+
+    public static void addReading(Long id, int code, float temperature, float windSpeed, float windDirection, float pressure)
+    {
+        //add validation here
+
+        Reading reading = new Reading(code,temperature,windSpeed,pressure,windDirection);
+        Station station = Station.findById(id);
+        station.readings.add(reading);
+        station.save();
+        redirect("/stations/" +id);
+
     }
 }
 

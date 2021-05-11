@@ -177,15 +177,5 @@ public class StationCtrl extends Controller {
         return (float)(a + b*temperature - c*calc+ d*temperature*calc);
     }
 
-    public static void addReading(Long id, int code, float temperature, float windSpeed, float windDirection, float pressure)
-    {
-        Reading reading = new Reading(code,temperature,windSpeed,pressure,windDirection);
-        Station station = Station.findById(id);
-        station.readings.add(reading);
-        station.save();
-        redirect("/stations/" +id);
-
-    }
-
 
 }

@@ -40,7 +40,7 @@ public class Station extends Model {
         this.lng = lng;
     }
 
-    //do I need this method?
+
   public Reading getLatestReading()
     {
 
