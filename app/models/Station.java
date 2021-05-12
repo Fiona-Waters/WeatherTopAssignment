@@ -27,7 +27,9 @@ public class Station extends Model {
     public float minWindSpeed;
     public float maxPressure;
     public float minPressure;
-
+    public String tempTrend;
+    public String windTrend;
+    public String pressureTrend;
 
 
     @OneToMany(cascade = CascadeType.ALL)

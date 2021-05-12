@@ -29,8 +29,10 @@ public class StationCtrl extends Controller {
             station.maxWindSpeed = ReadingAnalytics.calcMaximumWindSpeed(station.readings);
             station.minPressure = ReadingAnalytics.calcMinimumPressure(station.readings);
             station.maxPressure = ReadingAnalytics.calcMaximumPressure(station.readings);
+            station.tempTrend = ReadingAnalytics.tempTrend(station.readings,id);
+            station.windTrend = ReadingAnalytics.windSpeedTrend(station.readings,id);
+            station.pressureTrend = ReadingAnalytics.pressureTrend(station.readings,id);
         }
-
 
         render("station.html",station);
     }

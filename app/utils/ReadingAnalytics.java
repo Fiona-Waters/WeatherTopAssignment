@@ -1,6 +1,7 @@
 package utils;
 
 import models.Reading;
+import models.Station;
 
 import java.util.List;
 
@@ -107,4 +108,73 @@ public class ReadingAnalytics {
         }
         return minValue;
     }
+
+    public static String tempTrend(List <Reading> readings, long id) {
+        Station station = Station.findById(id);
+        String result = "";
+        if (readings.size() >= 3) {
+            float lastTemp = station.readings.get(station.readings.size() - 1).temperature;
+            float secondLastTemp = station.readings.get(station.readings.size() - 2).temperature;
+            float thirdLastTemp = station.readings.get(station.readings.size() - 3).temperature;
+
+            if (lastTemp > secondLastTemp && secondLastTemp > thirdLastTemp)
+            {
+                result = "Rising";
+            }
+            else if (thirdLastTemp < secondLastTemp && secondLastTemp < lastTemp)
+            {
+                result = "Falling";
+            }
+            else
+            {result = "Steady";}
+        }
+        return result;
+    }
+
+    public static String windSpeedTrend(List <Reading> readings, long id) {
+        Station station = Station.findById(id);
+        String result = "";
+        if (readings.size() >= 3) {
+            float lastWindSpeed = station.readings.get(station.readings.size() - 1).windSpeed;
+            float secondLastWindSpeed = station.readings.get(station.readings.size() - 2).windSpeed;
+            float thirdLastWindSpeed = station.readings.get(station.readings.size() - 3).windSpeed;
+
+            if (lastWindSpeed > secondLastWindSpeed && secondLastWindSpeed > thirdLastWindSpeed)
+            {
+                result = "Rising";
+            }
+            else if (thirdLastWindSpeed < secondLastWindSpeed && secondLastWindSpeed < lastWindSpeed)
+            {
+                result = "Falling";
+            }
+            else
+            {result = "Steady";}
+        }
+        return result;
+    }
+
+    public static String pressureTrend(List <Reading> readings, long id) {
+        Station station = Station.findById(id);
+        String result = "";
+        if (readings.size() >= 3) {
+            float lastPressure = station.readings.get(station.readings.size() - 1).pressure;
+            float secondLastPressure = station.readings.get(station.readings.size() - 2).pressure;
+            float thirdLastPressure = station.readings.get(station.readings.size() - 3).pressure;
+
+            if (lastPressure > secondLastPressure && secondLastPressure > thirdLastPressure)
+            {
+                result = "Rising";
+            }
+            else if (thirdLastPressure < secondLastPressure && secondLastPressure < lastPressure)
+            {
+                result = "Falling";
+            }
+            else
+            {result = "Steady";}
+        }
+        return result;
+    }
+
+
+
 }
