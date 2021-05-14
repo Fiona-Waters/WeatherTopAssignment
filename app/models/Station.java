@@ -45,7 +45,6 @@ public class Station extends Model {
 
   public Reading getLatestReading()
     {
-
         if (readings.size() >=1)
             {
                 return readings.get(readings.size() - 1);
@@ -54,8 +53,6 @@ public class Station extends Model {
             {
                 return null;
             }
-
-
     }
 
 
