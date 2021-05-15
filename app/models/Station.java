@@ -18,6 +18,11 @@ public class Station extends Model {
     public int toBeaufort;
     public String windCompass;
     public float windChill;
+
+    public String getName() {
+        return name;
+    }
+
     public String name;
     public float lat;
     public float lng;
@@ -54,6 +59,5 @@ public class Station extends Model {
                 return null;
             }
     }
-
 
 }

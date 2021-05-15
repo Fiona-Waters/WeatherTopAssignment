@@ -9,7 +9,9 @@ GET     /dashboard                              Dashboard.index
 GET     /home                                   Dashboard.index
 GET     /about                                  About.index
 GET     /stations/{id}                          StationCtrl.index
-POST    /stations/{id}/addreading               Dashboard.addReading
+POST    /stations/{id}/addreading               StationCtrl.addReading
+GET     /dashboard/deletestation/{id}           Dashboard.deleteStation
+GET     /stations/{id}/deletereading/{readingid} StationCtrl.deleteReading
 GET     /signup                                 Accounts.signup
 GET     /login                                  Accounts.login
 POST    /register                               Accounts.register

@@ -1,8 +1,8 @@
 <form class="ui segment form" action="/stations/${_station.id}/addreading" method="POST">
-    <div class="three fields">
+    <div class="five fields">
         <div class="field">
             <label>Code</label>
-            <input placeholder="Code" type="number" maxlength="3" min=100" max="800" name="code">
+            <input placeholder="Code" type="number" minlength="3" maxlength="3" min=100" max="800" name="code">
         </div>
         <div class="field">
             <label>Temperature</label>
@@ -12,15 +12,13 @@
             <label>Wind Speed</label>
             <input placeholder="Wind Speed" type="number" step="0.01" maxlength="5" min="0" max="200" name="windSpeed">
         </div>
-    </div>
-    <div class="two fields">
         <div class="field">
             <label>Wind Direction</label>
-            <input placeholder="Wind Direction 0-360" type="number" maxlength="3" min="0" max="360" name="windDirection">
+            <input placeholder="0-360" type="number" maxlength="3" min="0" max="360" name="windDirection">
         </div>
         <div class="field">
             <label>Pressure</label>
-            <input placeholder="Pressure" type="number" maxlength="4" min=900" max="1100" name="pressure">
+            <input placeholder="Pressure" type="number" min=900" max="1100" name="pressure">
         </div>
     </div>
     <button class="ui blue submit button">Submit Reading</button>

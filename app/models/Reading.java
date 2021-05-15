@@ -21,8 +21,8 @@ public class Reading extends Model {
         this.code = code;
         this.temperature = temperature;
         this.windSpeed = windSpeed;
-        this.pressure = pressure;
         this.windDirection = windDirection;
+        this.pressure = pressure;
         this.date = date;
     }
 

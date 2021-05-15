@@ -5,11 +5,9 @@ import models.Station;
 import models.Reading;
 import play.Logger;
 import play.mvc.Controller;
+import utils.ReadingAnalytics;
 
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashMap;
+import java.util.*;
 
 public class Dashboard extends Controller {
 
@@ -19,30 +17,34 @@ public class Dashboard extends Controller {
         Logger.info("Rendering Dashboard");
         Member member = Accounts.getLoggedInMember();
         List<Station> stations = member.stations;
+        Collections.sort(stations, Comparator.comparing(Station::getName));
+        for(int i=0; i<stations.size(); i++) {
+            ReadingAnalytics.readingCalculations(stations.get(i));
+        }
         render("dashboard.html", member, stations);
 
     }
 
-    public static void addStation(String title, float lat, float lng)
-    {
+    public static void addStation(String title, float lat, float lng) {
+        Logger.info("Adding a Station");
         Member member = Accounts.getLoggedInMember();
-        Station station = new Station (title, lat, lng);
+        Station station = new Station(title, lat, lng);
         member.stations.add(station);
         member.save();
-        Logger.info("Adding a new station called " + title);
-        station.save();
         redirect("/dashboard");
     }
 
 
-    public static void addReading(Long id, int code, float temperature, float windSpeed, float windDirection, float pressure)
-    {
-        Date now = new Date();
-        Reading reading = new Reading(code,temperature,windSpeed,windDirection,pressure,now);
+    public static void deleteStation(Long id) {
+        Logger.info("Deleting a Station");
+        Member member = Accounts.getLoggedInMember();
         Station station = Station.findById(id);
-        station.readings.add(reading);
-        station.save();
-        redirect("/stations/" + id);
+        member.stations.remove(station);
+        member.save();
+        station.delete();
+        redirect("/dashboard");
     }
+
+
 }
 

@@ -1,5 +1,6 @@
 package utils;
 
+import controllers.StationCtrl;
 import models.Reading;
 import models.Station;
 
@@ -7,17 +8,37 @@ import java.util.List;
 
 public class ReadingAnalytics {
 
+    public static void readingCalculations(Station station)
+    {
+        if (station.readings.size() > 0) {
+            Reading lastReading = station.readings.get(station.readings.size() - 1);
+            station.weatherCondition = StationCtrl.weatherCodes.get(lastReading.code);
+            station.weatherConditionIcon = StationCtrl.iconWeatherCodes.get(lastReading.code);
+            station.fahrenheit = StationCtrl.convertCToF(lastReading.temperature);
+            station.toBeaufort = StationCtrl.convertToBeaufort(lastReading.windSpeed);
+            station.windChill = StationCtrl.calcWindChill(lastReading.temperature, lastReading.windSpeed);
+            station.windCompass = StationCtrl.calcWindDirection(lastReading.windDirection);
+            station.minTemperature = ReadingAnalytics.calcMinimumTemperature(station.readings);
+            station.maxTemperature = ReadingAnalytics.calcMaximumTemperature(station.readings);
+            station.minWindSpeed = ReadingAnalytics.calcMinimumWindSpeed(station.readings);
+            station.maxWindSpeed = ReadingAnalytics.calcMaximumWindSpeed(station.readings);
+            station.minPressure = ReadingAnalytics.calcMinimumPressure(station.readings);
+            station.maxPressure = ReadingAnalytics.calcMaximumPressure(station.readings);
+            station.tempTrend = ReadingAnalytics.tempTrend(station.readings);
+            station.windTrend = ReadingAnalytics.windSpeedTrend(station.readings);
+            station.pressureTrend = ReadingAnalytics.pressureTrend(station.readings);
+        }
+    }
+
     public static float calcMinimumTemperature(List<Reading> readings)
     {
         float minValue = 0;
         if (readings.size() > 0)
         {
             minValue = readings.get(0).temperature;
-            for (int i=0; i<readings.size(); i++)
-            {
-                if(readings.get(i).temperature < minValue)
-                {
-                    minValue = readings.get(i).temperature;
+            for (Reading reading : readings) {
+                if (reading.temperature < minValue) {
+                    minValue = reading.temperature;
                 }
             }
         }
@@ -30,11 +51,9 @@ public class ReadingAnalytics {
         if(readings.size() >0)
         {
             maxValue = readings.get(0).temperature;
-            for(int i=0; i<readings.size(); i++)
-            {
-                if(readings.get(i).temperature > maxValue)
-                {
-                    maxValue = readings.get(i).temperature;
+            for (Reading reading : readings) {
+                if (reading.temperature > maxValue) {
+                    maxValue = reading.temperature;
                 }
             }
         }
@@ -47,11 +66,9 @@ public class ReadingAnalytics {
         if(readings.size() >0)
         {
             maxValue = readings.get(0).windSpeed;
-            for(int i=0; i<readings.size(); i++)
-            {
-                if(readings.get(i).windSpeed > maxValue)
-                {
-                    maxValue = readings.get(i).windSpeed;
+            for (Reading reading : readings) {
+                if (reading.windSpeed > maxValue) {
+                    maxValue = reading.windSpeed;
                 }
             }
         }
@@ -64,11 +81,9 @@ public class ReadingAnalytics {
         if(readings.size() >0)
         {
             minValue = readings.get(0).windSpeed;
-            for(int i=0; i<readings.size(); i++)
-            {
-                if(readings.get(i).windSpeed < minValue)
-                {
-                    minValue = readings.get(i).windSpeed;
+            for (Reading reading : readings) {
+                if (reading.windSpeed < minValue) {
+                    minValue = reading.windSpeed;
                 }
             }
         }
@@ -109,13 +124,13 @@ public class ReadingAnalytics {
         return minValue;
     }
 
-    public static String tempTrend(List <Reading> readings, long id) {
-        Station station = Station.findById(id);
+    public static String tempTrend(List <Reading> readings) {
+
         String result = "";
         if (readings.size() >= 3) {
-            float lastTemp = station.readings.get(station.readings.size() - 1).temperature;
-            float secondLastTemp = station.readings.get(station.readings.size() - 2).temperature;
-            float thirdLastTemp = station.readings.get(station.readings.size() - 3).temperature;
+            float lastTemp = readings.get(readings.size() - 1).temperature;
+            float secondLastTemp = readings.get(readings.size() - 2).temperature;
+            float thirdLastTemp = readings.get(readings.size() - 3).temperature;
 
             if (lastTemp > secondLastTemp && secondLastTemp > thirdLastTemp)
             {
@@ -131,13 +146,12 @@ public class ReadingAnalytics {
         return result;
     }
 
-    public static String windSpeedTrend(List <Reading> readings, long id) {
-        Station station = Station.findById(id);
+    public static String windSpeedTrend(List <Reading> readings) {
         String result = "";
         if (readings.size() >= 3) {
-            float lastWindSpeed = station.readings.get(station.readings.size() - 1).windSpeed;
-            float secondLastWindSpeed = station.readings.get(station.readings.size() - 2).windSpeed;
-            float thirdLastWindSpeed = station.readings.get(station.readings.size() - 3).windSpeed;
+            float lastWindSpeed = readings.get(readings.size() - 1).windSpeed;
+            float secondLastWindSpeed = readings.get(readings.size() - 2).windSpeed;
+            float thirdLastWindSpeed = readings.get(readings.size() - 3).windSpeed;
 
             if (lastWindSpeed > secondLastWindSpeed && secondLastWindSpeed > thirdLastWindSpeed)
             {
@@ -153,13 +167,12 @@ public class ReadingAnalytics {
         return result;
     }
 
-    public static String pressureTrend(List <Reading> readings, long id) {
-        Station station = Station.findById(id);
+    public static String pressureTrend(List <Reading> readings) {
         String result = "";
         if (readings.size() >= 3) {
-            float lastPressure = station.readings.get(station.readings.size() - 1).pressure;
-            float secondLastPressure = station.readings.get(station.readings.size() - 2).pressure;
-            float thirdLastPressure = station.readings.get(station.readings.size() - 3).pressure;
+            float lastPressure = readings.get(readings.size() - 1).pressure;
+            float secondLastPressure = readings.get(readings.size() - 2).pressure;
+            float thirdLastPressure = readings.get(readings.size() - 3).pressure;
 
             if (lastPressure > secondLastPressure && secondLastPressure > thirdLastPressure)
             {

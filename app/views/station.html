@@ -8,7 +8,7 @@
        ${station.name}
     </h2>
     #{weathercards station:station/}
-    #{list-readings readings:station.readings/}
+    #{list-readings readings:station.readings, station:station/}
     #{addreading station:station /}
 
 </section>

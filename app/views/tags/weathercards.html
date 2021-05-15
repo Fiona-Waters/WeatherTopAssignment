@@ -1,4 +1,3 @@
-
 <div class="ui five inverted cards">
     <div class="red card">
         <div class="image">
@@ -58,12 +57,12 @@
           <h3>Wind  <i class="right floated green big wind icon"></i> </h3>
           <br>
           <p>${_station.toBeaufort} bft
-              <br> ${_station.windCompass}
+          <br>${_station.windCompass}
           <br>feels like
           <br>${_station.windChill.format('0.##')}
-              <br>Max: ${_station.maxWindSpeed}
-              <br>Min: ${_station.minWindSpeed}
-              <br>#{if _station.windTrend == "Rising"}
+          <br>Max: ${_station.maxWindSpeed}
+          <br>Min: ${_station.minWindSpeed}
+          <br>#{if _station.windTrend == "Rising"}
               <i class="right floated big green arrow up icon"></i></i> #{/if}
               #{if _station.windTrend == "Falling"}
               <i class="right floated big green arrow down icon"></i> #{/if}
