@@ -2,7 +2,6 @@ package controllers;
 
 import models.Member;
 import models.Station;
-import models.Reading;
 import play.Logger;
 import play.mvc.Controller;
 import utils.ReadingAnalytics;

@@ -16,6 +16,8 @@ GET     /signup                                 Accounts.signup
 GET     /login                                  Accounts.login
 POST    /register                               Accounts.register
 POST    /authenticate                           Accounts.authenticate
+GET     /my-account                             Accounts.userDetails
+POST    /updateuserdetails                      Accounts.updateUserDetails
 GET     /logout                                 Accounts.logout
 
 # Ignore favicon requests

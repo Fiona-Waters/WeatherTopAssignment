@@ -4,6 +4,9 @@ import models.Member;
 import play.Logger;
 import play.mvc.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Accounts extends Controller
 {
     public static void signup()
@@ -55,5 +58,21 @@ public class Accounts extends Controller
             login();
         }
         return member;
+    }
+
+    public static void userDetails(){
+        Member member = getLoggedInMember();
+        render ("my-account.html", member); }
+
+    public static void updateUserDetails(String firstname, String lastname, String email, String password)
+    {
+        Member member = getLoggedInMember();
+        member.setFirstname(firstname);
+        member.setLastname(lastname);
+        member.setEmail(email);
+        member.setPassword(password);
+        member.save();
+
+        render("login.html");
     }
 }
