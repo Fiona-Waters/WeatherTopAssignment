@@ -5,9 +5,8 @@ import play.mvc.Controller;
 
 public class Start extends Controller {
 
-    public static void index()
-    {
-        Logger.info("Rendering Main");
-        render ("signup.html");
-    }
+  public static void index() {
+    Logger.info("Rendering Main");
+    render("signup.html");
+  }
 }

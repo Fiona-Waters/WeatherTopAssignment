@@ -3,12 +3,13 @@
 
 #{menu id:"dashboard" /}
 
-<section class = "ui segment">
+<section class="ui segment">
     <h2 class="ui header">
-       ${station.name}
+        ${station.name}
     </h2>
     #{weathercards station:station/}
     #{list-readings readings:station.readings, station:station/}
-    #{addreading station:station /}
 
 </section>
+
+    #{addreading station:station/}
