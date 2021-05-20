@@ -1,4 +1,11 @@
 package models;
+/**
+ * Member model handling member related data.
+ *
+ * @author Fiona Waters
+ * @date 18.05.2021
+ * @version 5
+ */
 
 import play.db.jpa.Model;
 
@@ -10,6 +17,7 @@ import java.util.List;
 
 @Entity
 public class Member extends Model {
+
   public String firstname;
   public String lastname;
   public String email;

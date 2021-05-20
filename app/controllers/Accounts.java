@@ -1,10 +1,19 @@
 package controllers;
 
+/**
+ * Accounts controller handling all user related actions.
+ *
+ * @author Fiona Waters
+ * @date 18.05.2021
+ * @version 5
+ */
+
 import models.Member;
 import play.Logger;
 import play.mvc.Controller;
 
 public class Accounts extends Controller {
+
   public static void signup() {
     render("signup.html");
   }
@@ -17,7 +26,7 @@ public class Accounts extends Controller {
     Logger.info("Registering new user " + email);
     Member member = new Member(firstname, lastname, email, password);
     member.save();
-    redirect("/");
+    redirect("/login");
   }
 
   public static void authenticate(String email, String password) {

@@ -1,11 +1,15 @@
 package controllers;
 
+/**
+ * About controller using index method to render about.html page
+ *
+ * @author Fiona Waters
+ * @date 18.05.2021
+ * @version 5
+ */
+
 import play.*;
 import play.mvc.*;
-
-import java.util.*;
-
-import models.*;
 
 public class About extends Controller {
 

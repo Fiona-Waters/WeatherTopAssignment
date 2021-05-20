@@ -1,4 +1,11 @@
 package controllers;
+/**
+ * StationCtrl controller handling all Station related actions.
+ *
+ * @author Fiona Waters
+ * @date 18.05.2021
+ * @version 5
+ */
 
 import java.util.Date;
 

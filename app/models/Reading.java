@@ -1,4 +1,11 @@
 package models;
+/**
+ * Reading model handling reading related data.
+ *
+ * @author Fiona Waters
+ * @date 18.05.2021
+ * @version 5
+ */
 
 import javax.persistence.Entity;
 
@@ -14,7 +21,6 @@ public class Reading extends Model {
   public float pressure;
   public float windDirection;
   public Date date;
-
 
   public Reading(int code, float temperature, float windSpeed, float pressure, float windDirection, Date date) {
     this.code = code;

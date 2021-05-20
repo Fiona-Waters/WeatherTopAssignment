@@ -1,5 +1,13 @@
 package controllers;
 
+/**
+ * Dashboard controller handling all Dashboard related actions.
+ *
+ * @author Fiona Waters
+ * @date 18.05.2021
+ * @version 5
+ */
+
 import models.Member;
 import models.Station;
 import play.Logger;

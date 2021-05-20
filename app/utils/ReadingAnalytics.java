@@ -1,4 +1,11 @@
 package utils;
+/**
+ * ReadingAnalytics util handling data calculations and related methods.
+ *
+ * @author Fiona Waters
+ * @date 18.05.2021
+ * @version 5
+ */
 
 import models.Reading;
 import models.Station;
@@ -12,7 +19,7 @@ public class ReadingAnalytics {
     fillWeatherCodes();
     fillIconWeatherCodes();
 
-     if (station.readings.size() > 0) {
+    if (station.readings.size() > 0) {
       Reading lastReading = station.readings.get(station.readings.size() - 1);
       station.weatherCondition = weatherCodes.get(lastReading.code);
       station.weatherConditionIcon = iconWeatherCodes.get(lastReading.code);

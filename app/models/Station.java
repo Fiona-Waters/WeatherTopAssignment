@@ -1,4 +1,11 @@
 package models;
+/**
+ * Member model handling station related data.
+ *
+ * @author Fiona Waters
+ * @date 18.05.2021
+ * @version 5
+ */
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,15 +19,15 @@ import play.db.jpa.Model;
 @Entity
 public class Station extends Model {
 
+  public String name;
+  public float lat;
+  public float lng;
   public String weatherCondition;
   public String weatherConditionIcon;
   public float fahrenheit;
   public int toBeaufort;
   public String windCompass;
   public float windChill;
-  public String name;
-  public float lat;
-  public float lng;
   public float minTemperature;
   public float maxTemperature;
   public float maxWindSpeed;
@@ -30,7 +37,6 @@ public class Station extends Model {
   public String tempTrend;
   public String windTrend;
   public String pressureTrend;
-
 
   @OneToMany(cascade = CascadeType.ALL)
   public List<Reading> readings = new ArrayList<Reading>();
